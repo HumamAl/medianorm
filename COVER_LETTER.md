@@ -1,6 +1,6 @@
 Hi,
 
-Composite key matching across station + program + spot length + broadcast week is where reconciliation engines break. Tolerance thresholds on broadcast calendar offsets are the part most devs underestimate. Built a working version: {VERCEL_URL}
+Composite key matching across station + program + spot length + broadcast week is where reconciliation engines break. Tolerance thresholds on broadcast calendar offsets are the part most devs underestimate. Built a working version: https://medianorm-eight.vercel.app
 
 The demo covers file upload, Excel parsing, and reconciliation with configurable tolerance thresholds. Claude API handles PDF invoice extraction. Built a similar AI extraction pipeline that cut a 4-hour review to 20 minutes.
 
