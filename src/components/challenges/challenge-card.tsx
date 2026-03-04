@@ -1,37 +1,48 @@
-import { cn } from "@/lib/utils";
+// NO "use client" — pure JSX, no hooks
+
+import type { ReactNode } from "react";
+import { OutcomeStatement } from "./outcome-statement";
 
 interface ChallengeCardProps {
   title: string;
   description: string;
   outcome?: string;
-  children: React.ReactNode;
-  className?: string;
+  index?: number;
+  children?: ReactNode;
 }
 
 export function ChallengeCard({
   title,
   description,
   outcome,
+  index = 0,
   children,
-  className,
 }: ChallengeCardProps) {
+  const stepNumber = String(index + 1).padStart(2, "0");
+
   return (
     <div
-      className={cn(
-        "bg-card border border-border/60 shadow-[0_1px_2px_0_rgb(0_0_0/0.03)] rounded-lg p-6 space-y-4 hover:border-primary/30 hover:shadow-[0_2px_8px_0_rgb(0_0_0/0.05)] transition-all duration-150",
-        className
-      )}
+      className="bg-card border border-border/60 rounded-sm p-4 space-y-3 hover:border-primary/25 transition-colors"
+      style={{ transitionDuration: "var(--dur-fast, 60ms)" }}
     >
-      <div>
-        <h2 className="text-lg font-semibold">{title}</h2>
-        <p className="text-sm text-muted-foreground mt-1">{description}</p>
-      </div>
-      {children}
-      {outcome && (
-        <div className="pt-2 border-t border-border/60">
-          <p className="text-sm font-medium text-[color:var(--success)]">{outcome}</p>
+      {/* Header row: step number + title */}
+      <div className="flex items-baseline gap-2.5">
+        <span className="font-mono text-xs font-medium text-primary/60 w-5 shrink-0 tabular-nums">
+          {stepNumber}
+        </span>
+        <div>
+          <h2 className="text-sm font-semibold leading-tight">{title}</h2>
+          <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+            {description}
+          </p>
         </div>
-      )}
+      </div>
+
+      {/* Visualization slot */}
+      {children}
+
+      {/* Outcome statement */}
+      {outcome && <OutcomeStatement outcome={outcome} index={index} />}
     </div>
   );
 }

@@ -91,9 +91,10 @@
    ============================================================ */
 :root {
   /* ── Border Radius ───────────────────────────────────────────
-     Profiles: sharp = 0.25rem | standard = 0.5rem | rounded = 0.75rem
-     Layout Builder sets to match domain personality.            */
-  --radius: 0.5rem;
+     MEDIANORM: Small (0.375rem) — enterprise financial tools use tight radius.
+     Mediaocean and Strata both use minimal rounding.
+     Profiles: sharp = 0.25rem | small = 0.375rem | standard = 0.5rem | rounded = 0.75rem */
+  --radius: 0.375rem;
 
   /* ── Base Surfaces ───────────────────────────────────────── */
   --background: oklch(1 0 0);
@@ -106,13 +107,12 @@
   --surface-active: oklch(0.94 0 0);
 
   /* ── Primary Color ───────────────────────────────────────────
-     !! OVERRIDE REQUIRED — Layout Builder must replace --primary and
-        --primary-h with domain-appropriate oklch values.
-        See the Creative Brief's colorDirection for the target color.
-        QA rejects builds where --primary stays oklch(0.205 0 0). !! */
-  --primary: oklch(0.205 0 0);
+     MEDIANORM: Deep indigo — enterprise financial tooling.
+     Inspired by Mediaocean Prisma / Strata dashboard palettes.
+     Creative Brief: "data-dense" aesthetic, hue 265 (indigo).     */
+  --primary: oklch(0.45 0.22 265);
   --primary-foreground: oklch(0.985 0 0);
-  --primary-h: 270; /* Integer hue extracted from --primary */
+  --primary-h: 265; /* Integer hue extracted from --primary */
 
   /* ── Derived Color Tokens ────────────────────────────────── */
   --section-dark: oklch(0.10 0.02 var(--primary-h));
@@ -120,40 +120,47 @@
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --accent: oklch(0.55 0.18 265);
+  --accent-foreground: oklch(0.985 0 0);
 
   /* ── Semantic Colors ─────────────────────────────────────── */
+  /* MEDIANORM: Critical status colors for reconciliation states.
+     success = matched/reconciled, warning = within tolerance, destructive = discrepancy */
   --destructive: oklch(0.577 0.245 27.325);
-  --success: oklch(0.627 0.194 149.214);
+  --success: oklch(0.62 0.19 145);   /* matched/reconciled — green */
   --success-foreground: oklch(0.985 0 0);
-  --warning: oklch(0.769 0.188 70.08);
+  --warning: oklch(0.75 0.18 85);    /* within tolerance — amber */
   --warning-foreground: oklch(0.205 0 0);
 
   /* ── Borders & Inputs ────────────────────────────────────── */
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(0.45 0.22 265); /* matches --primary */
 
   /* ── Chart Colors ────────────────────────────────────────────
-     Layout Builder harmonizes to primary hue. See design-system.md. */
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+     MEDIANORM: Harmonized to indigo (hue 265). Rotated in 30-deg increments.
+     chart-1: anchor at primary hue  — indigo
+     chart-2: +30 deg                — violet/purple (~295)
+     chart-3: +60 deg                — blue (~325 wraps to magenta, use blue ~235)
+     chart-4: -30 deg                — blue-indigo (~235)
+     chart-5: complementary          — warm amber (~85) for contrast           */
+  --chart-1: oklch(0.50 0.20 265);  /* indigo — primary anchor */
+  --chart-2: oklch(0.52 0.18 295);  /* violet */
+  --chart-3: oklch(0.55 0.17 235);  /* cornflower blue */
+  --chart-4: oklch(0.58 0.16 205);  /* teal-blue */
+  --chart-5: oklch(0.72 0.18 85);   /* amber — warm contrast */
 
   /* ── Sidebar Colors ──────────────────────────────────────────
      After color override: --sidebar-primary and --sidebar-ring
      should match --primary.                                     */
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary: oklch(0.45 0.22 265); /* matches --primary */
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-ring: oklch(0.45 0.22 265); /* matches --primary */
 
   /* ── Surface / Card Tokens ───────────────────────────────────
      Driven by [data-theme] aesthetic — not overridden per domain.
@@ -165,18 +172,19 @@
   --card-hover-transform: none;
 
   /* ── Spacing / Density Tokens ────────────────────────────────
-     Layout Builder overrides for compact / standard / spacious feel.
-
+     MEDIANORM: Compact profile — data-dense aesthetic.
      Compact:  --nav-item-py: 0.375rem, --content-padding: 1rem,   --card-padding: 1rem
      Standard: --nav-item-py: 0.5rem,   --content-padding: 1.5rem, --card-padding: 1.5rem
      Spacious: --nav-item-py: 0.625rem, --content-padding: 2rem,   --card-padding: 1.5rem */
-  --page-padding: 1.5rem;
-  --card-padding: 1.5rem;
-  --card-padding-sm: 1rem;
-  --grid-gap: 1rem;
-  --section-gap: 1.5rem;
+  --page-padding: 1rem;
+  --card-padding: 1rem;
+  --card-padding-sm: 0.75rem;
+  --grid-gap: 0.75rem;
+  --section-gap: 1rem;
 
   /* ── Layout Tokens ───────────────────────────────────────────
+     MEDIANORM: Compact profile — data-dense aesthetic.
+     Media buyers live in dense spreadsheet UIs.
      Sidebar width presets:
        Slim:     14rem — compact utility or data-dense apps
        Standard: 16rem — default
@@ -185,19 +193,19 @@
      Header height presets:
        Compact:  2.75rem
        Standard: 3.5rem                                           */
-  --sidebar-width: 16rem;
+  --sidebar-width: 14rem;
   --sidebar-collapsed-width: 4rem;
-  --sidebar-width-mobile: 18rem;
-  --header-height: 3.5rem;
+  --sidebar-width-mobile: 16rem;
+  --header-height: 2.75rem;
   --tab-bar-height: 49px;    /* 48px + 1px border */
-  --content-padding: 1.5rem;
-  --nav-item-py: 0.5rem;
+  --content-padding: 1rem;
+  --nav-item-py: 0.375rem;
 
-  /* Sidebar surface — override to tint sidebar by domain:
+  /* Sidebar surface — MEDIANORM: very subtle indigo tint for depth separation.
      White (default): oklch(1 0 0)
      Tinted:          oklch(0.985 0.008 var(--primary-h))
      Subdued:         oklch(0.97 0.005 var(--primary-h))          */
-  --sidebar-bg: oklch(1 0 0);
+  --sidebar-bg: oklch(0.975 0.005 265);
 
   /* Tab bar background — tint to primary hue subtly if desired */
   --tab-bar-bg: var(--background);
@@ -213,9 +221,11 @@
   --body-leading: 1.625;
 
   /* ── Motion Tokens ───────────────────────────────────────────
+     MEDIANORM: Motion character — minimal (150ms). Fast transitions,
+     no theatrical effects. This is an ops tool, not a consumer app.
      All transitions in components use these — never hardcode
      duration-200+ or ease-in values directly.                   */
-  --dur-fast: 100ms;
+  --dur-fast: 80ms;
   --dur-normal: 150ms;
   --dur-slow: 250ms;
   --dur-deliberate: 400ms;
@@ -967,6 +977,16 @@
     box-shadow: 2px 2px 0 oklch(0.10 0 0);
   }
 
+}
+
+/* ── Staggered card reveal animation ──────────────────────── */
+@keyframes fade-up-in {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up-in {
+  animation-name: fade-up-in;
+  animation-timing-function: ease-out;
 }
 
 /* ── Frame utility classes ─────────────────────────────────── */

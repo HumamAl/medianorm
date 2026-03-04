@@ -44,12 +44,12 @@ export type DeviceModel =
 // evidence-backed and documented in the Creative Brief.
 
 export const APP_CONFIG = {
-  appName: "App Name",                       // Display name (sidebar header, page title)
-  projectName: "Project Name",               // Client's product name (tab bar microtext, footer)
-  clientName: null as string | null,         // Client first name, or null — never render "null"
-  domain: "tech",                            // Domain (finance, health, marketplace, tech, etc.)
-  aesthetic: "linear" as AestheticProfile,   // Drives data-theme="..." on <html>
-  demoFormat: "dashboard-app" as DemoFormat,          // Layout architecture for Tab 1
-  deviceModel: undefined as DeviceModel | undefined,  // Device frame model (frame formats only)
-  screenCount: undefined as number | undefined,       // Number of screens in frame demos
+  appName: "MediaNorm",                      // Display name (sidebar header, page title)
+  projectName: "MediaNorm",                  // Client's product name (tab bar microtext, footer)
+  clientName: null as string | null,         // No specific client — never render "null"
+  domain: "media-buying",                    // Ad tech / media buying / reconciliation
+  aesthetic: "data-dense" as AestheticProfile,        // Compact, monospace metrics, max info per pixel
+  demoFormat: "dashboard-app" as DemoFormat,          // Sidebar dashboard layout
+  deviceModel: undefined as DeviceModel | undefined,  // Not used for dashboard-app format
+  screenCount: undefined as number | undefined,       // Not used for dashboard-app format
 } as const;

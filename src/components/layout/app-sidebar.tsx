@@ -6,7 +6,11 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { APP_CONFIG } from "@/lib/config";
 import {
-  LayoutDashboard,
+  GitCompareArrows,
+  FileSpreadsheet,
+  Receipt,
+  BarChart3,
+  FolderOpen,
   ChevronLeft,
   ChevronRight,
   Lightbulb,
@@ -23,9 +27,11 @@ import {
 // ═══════════════════════════════════════════════════════════════════════════
 
 const navItems = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  // Dashboard Builder agent: add 3-5 feature page nav items here.
-  // Example: { href: "/orders", label: "Orders", icon: ShoppingCart },
+  { href: "/", label: "Reconciliation", icon: GitCompareArrows },
+  { href: "/buy-plans", label: "Buy Plans", icon: FileSpreadsheet },
+  { href: "/invoices", label: "Invoices", icon: Receipt },
+  { href: "/spend-analytics", label: "Spend Analytics", icon: BarChart3 },
+  { href: "/file-manager", label: "File Manager", icon: FolderOpen },
 ];
 
 function SidebarLogo({ collapsed }: { collapsed: boolean }) {
